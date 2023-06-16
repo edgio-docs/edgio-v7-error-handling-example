@@ -3,7 +3,7 @@
     "start": "edgio dev",
     "deploy": "edgio deploy"
   },
-  "name": "error-handling-example",
+  "name": "edgio-error-handling-example",
   "private": true,
   "dependencies": {
     "next": "13.4.6",
