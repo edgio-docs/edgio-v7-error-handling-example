@@ -18,7 +18,9 @@ export default new Router()
       ],
     },
   })
+  // Render the custom error page for all 5xx responses
   .catch(/^5.*/, {
+    // This makes the redirect invisible to the client. They will just see the 500.html page.
     url: { follow_redirects: true },
     response: { set_status_code: 302 },
     headers: {
@@ -27,9 +29,9 @@ export default new Router()
       },
     },
   })
+  // Redirect all 4xx responses to the same path with "/legacy" prepended (unless we already have a "/legacy" in the path)
   .match(
-    // Redirect all 5xx responses to the same path with "/legacy" prepended (unless we already have a "/legacy" in the path)
-    { response: { status_code: /^4.*/ } },
+    { path: { not: /^\/legacy\/.*/ }, response: { status_code: /^4.*/ } },
     {
       response: {
         set_status_code: 302,
